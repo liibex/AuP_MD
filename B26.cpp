@@ -22,7 +22,6 @@ void find_combinations_wo_formula(int x){
     for (int i=1; sq(i)<=x; i++){
         for (int j=1; sq(j)<=x-sq(i); j++){
             for (int k=1; sq(k)<=x-(sq(i)+sq(j)); k++){
-                //if (sq(k)==x-(sq(i)+sq(j))){ // alternativa rezultātu meklēšana
                 if (three_n_sqd_sum(i, j, k) == x){ //Izmantojot formulu 
                     cout << "Numbers " << i << ", " << j << ", " << k << ", " << "sum: " << x << "\n";
                     cnt++;

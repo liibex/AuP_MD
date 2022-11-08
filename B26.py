@@ -13,13 +13,13 @@ def three_n_squared_sum(i,j,k): # 3 skaitļa kvadarātu summa
 def return_all_combinations(x): # 
     max = int(x**(1/2))                                 # max ir summas kvadråtsakne
     cnt = 0
-    for i in range(1, max + 1):
-        for j in range(1, x - i**2 + 1):
-            for k in range(1, x - (i**2 + j**2) + 1):       # Var iztikt bez 3 for loop, bet prasība ir izmantot minēto funkciju
+    for i in range(1, (max + 1)):
+        for j in range(1, (x - i**2 + 1)):
+            for k in range(1, (x - (i**2 + j**2) + 1)):     # Var iztikt bez 3 for loop, bet prasība ir izmantot minēto funkciju
                 if three_n_squared_sum(i,j,k) == x:
                     print(f'Numbers {i},{j},{k} sum: {three_n_squared_sum(i,j,k)}')
                     cnt += 1
-    if cnt == 0:
+    if cnt == 0:                                            # Nav tādu kombināciju
         print("This number has no valid combinations.")
 
 
