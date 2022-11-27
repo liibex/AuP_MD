@@ -43,9 +43,9 @@ int main()
         if (cin.fail())     // x nav int
         {
             cin.clear();
-            cout << "That was not a valid number!\n ";
+            cout << "That was not a valid number!\n ";      // x nav 0
         }
-        else if (x <= 0) cout << "That was not a valid number!\n ";
+        else if (x <= 0) cout << "That was not a valid number!\n "; 
         else                // x ir int
             find_combinations_wo_formula(x);
 
@@ -62,10 +62,12 @@ int main()
 /*
     "test_input,expected",
     [
-        (234, "numbers 1,8,13  squared: 1,64,169 sum: 234"),
+        (3, "Numbers 1, 1, 1, sum: 3"),
+        (234, "Numbers 1,8,13  squared: 1,64,169 sum: 234"),
         (0, "That was not a valid number."),
         (k, "That was not a valid number."),
-        (10, "This number has no valid combinations.""),
+        (10, "This number has no valid combinations."),
+        (234567, "This number has no valid combinations.")
         (-10, "That was not a valid number."),
     ],
 */
