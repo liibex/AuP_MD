@@ -74,7 +74,11 @@ bool isLargerOrEqual(char *a, char *b) { // True if a >= b, false if a < b
 
 char *addNegative(char *c) { // add minus sign in front of array
   int lenC = strlen(c);
-  char *d = (char *)malloc(lenC + 1);
+  if ((lenC <= 1) && (c[0] == (0 + '0'))){
+    return c;
+  }
+  //char *d = (char *)malloc(lenC + 1);
+  char *d = new char[lenC + 1];
   memset(d, '0', lenC + 1); // set the cult to all zeros
   d[lenC + 1] = '\0';
   d[0] = 45;
@@ -114,20 +118,20 @@ char *cSubstract(char *a, char *b) { // char array value substraction one by one
   int max = lenA > lenB ? lenA : lenB;
   //char *c = (char *)malloc(max + 2);
   char *c = new char[(max+2)];
-  //memset(c, '0', max + 1); // set the cult to all zeros
+  memset(c, '0', max + 1); // set the cult to all zeros
   c[max + 1] = '\0';
   for (int i = lenA - 1, j = lenB - 1, k = max; i >= 0 || j >= 0; --i, --j, --k) {
     int sum = 0;
     if (i >= 0 && j >= 0) {
       sum = num(a[i]) - num(b[j]) - num(c[k]); // add using carry
-      // cout << " a: " << a[i]<< " b: "<< b[j] << " c: "<< c[k] << endl;
-      // cout << " strlen a: " << strlen(a)<< " b: "<< strlen(b) << " c: "<< strlen(c) << endl;
+      //cout << " a: " << a[i]<< " b: "<< b[j] << " c: "<< c[k] << endl;
+      //cout << " strlen a: " << strlen(a)<< " b: "<< strlen(b) << " c: "<< strlen(c) << endl;
     } else if (j >= 0) {
       sum = num(b[j]) - num(c[k]); // add the carry with remaining
     } else if (i >= 0) {
       sum = num(a[i]) - num(c[k]);
     }
-    // cout << "sum:" << sum << endl;
+    //cout << "sum:" << sum << endl;
     if (sum < 0) {
       c[k] = (10 + sum) + '0';
       c[k - 1] = 1 + '0';
@@ -135,7 +139,7 @@ char *cSubstract(char *a, char *b) { // char array value substraction one by one
       c[k] = sum % 10 + '0';
       c[k - 1] = sum / 10 + '0';
     }
-    // cout << "k: " << c[k]<< "k-1: "<< c[k-1] << endl;
+    //cout << "k: " << c[k]<< "k-1: "<< c[k-1] << endl;
   }
   c = remove_zero(c);
   return c;
