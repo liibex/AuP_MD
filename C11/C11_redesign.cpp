@@ -61,7 +61,7 @@ bool isLargerOrEqual(char *a, char *b) { // True if a >= b, false if a < b
     return true;
   else if (lenA < lenB)
     return false;
-  else if (lenA == lenB) {
+  else{ //if (lenA == lenB) {
     for (int i = 0; i < (lenA); i++) {
       if (num(a[i]) > num(b[i]))
         return true;
@@ -88,7 +88,8 @@ char *cSum(char *a, char *b) { // char array value sum one by one
   int lenA = strlen(a);
   int lenB = strlen(b);
   int max = lenA > lenB ? lenA : lenB;
-  char *c = (char *)malloc(max + 2);
+  //char *c = (char *)malloc(max + 2);
+  char *c = new char[(max+2)];
   memset(c, '0', max + 1); // set the cult to all zeros
   c[max + 1] = '\0';
   for (int i = lenA - 1, j = lenB - 1, k = max; i >= 0 || j >= 0; --i, --j, --k) {
@@ -111,8 +112,9 @@ char *cSubstract(char *a, char *b) { // char array value substraction one by one
   int lenA = strlen(a);
   int lenB = strlen(b);
   int max = lenA > lenB ? lenA : lenB;
-  char *c = (char *)malloc(max + 2);
-  memset(c, '0', max + 1); // set the cult to all zeros
+  //char *c = (char *)malloc(max + 2);
+  char *c = new char[(max+2)];
+  //memset(c, '0', max + 1); // set the cult to all zeros
   c[max + 1] = '\0';
   for (int i = lenA - 1, j = lenB - 1, k = max; i >= 0 || j >= 0; --i, --j, --k) {
     int sum = 0;
@@ -148,8 +150,6 @@ char *calculate(char *a, char *b) { // function that organizes the flow of sum &
 
   if (signA && signB)
     return cSum(a, b);
-  else if (!signA && !signB)
-    return addNegative(cSum(a, b));
   else if (signA && !signB) {
     if (isLargerOrEqual(a, b)) {
       return cSubstract(a, b);
@@ -162,7 +162,8 @@ char *calculate(char *a, char *b) { // function that organizes the flow of sum &
     } else {
       return cSubstract(b, a);
     }
-  }
+  } else 
+    return addNegative(cSum(a, b));// { else if (!signA && !signB)
 }
 
 int main() {
@@ -198,10 +199,11 @@ int main() {
 /*
     "test_input,expected",
     [
-        (23, 43, "63"),
+        (23, 43, "66"),
         (0, 0, "0"),
+        (1234, -46993, "-45727"),
         (-10, 12 "2"),
-        (10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000, 1, "1 x
+        (1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000, 1, "1 x
    googol and 1"),
         10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000123
     ],
